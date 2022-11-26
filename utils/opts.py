@@ -31,7 +31,7 @@ def parse_opt():
     parser.add_argument(
         '--config',
         type = str,
-        default = 'configs/lstm.yaml',
+        default = 'configs/cnn1d.yaml',
         help = 'path to the configuration file (yaml)'
     )
     args = parser.parse_args()

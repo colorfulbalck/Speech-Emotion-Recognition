@@ -4,8 +4,10 @@ import extract_feats.opensmile as of
 import extract_feats.librosa as lf
 import models
 import utils
+from moviepy.editor import *
 
-def predict(config, audio_path: str, model) -> None:
+
+def predict(config, audio_path: str, model):
     """
     预测音频情感
 
@@ -28,11 +30,18 @@ def predict(config, audio_path: str, model) -> None:
     result_prob = model.predict_proba(test_feature)
     print('Recogntion: ', config.class_labels[int(result)])
     print('Probability: ', result_prob)
-    utils.radar(result_prob, config.class_labels)
+    # utils.radar(result_prob, config.class_labels)
+    nums = [result, result_prob]
+    return nums
+    # return config.class_labels[int(result)]
 
 
 if __name__ == '__main__':
-    audio_path = '/Users/zou/Renovamen/Developing/Speech-Emotion-Recognition/datasets/CASIA/angry/201-angry-liuchanhg.wav'
+    # os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+    video = VideoFileClip('test.avi')
+    audio = video.audio
+    audio.write_audiofile('test.mp3')
+    audio_path = 'test.mp3'
 
     config = utils.parse_opt()
     model = models.load(config)

@@ -34,11 +34,13 @@ def get_feature_opensmile(config, filepath: str) -> list:
     # 项目路径
     BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
     # single_feature.csv 路径
-    single_feat_path = os.path.join(BASE_DIR, config.feature_folder, 'single_feature.csv')
+    # single_feat_path = os.path.join(BASE_DIR, config.feature_folder, 'single_feature.csv')
+    single_feat_path = os.path.join(BASE_DIR, config.feature_folder, 'predict.csv')
     # Opensmile 配置文件路径
-    opensmile_config_path = os.path.join(config.opensmile_path, 'config', config.opensmile_config + '.conf')
+    opensmile_config_path = os.path.join('/project/SpeechRecognition/opensmile/config/is09-13', config.opensmile_config + '.conf')
 
-    # Opensmile 命令
+    # Opensmile 命令F
+    # cmd = 'cd ' + config.opensmile_path + ' && ./SMILExtract -C ' + opensmile_config_path + ' -I ' + filepath + ' -O ' + single_feat_path + ' -appendarff 0'
     cmd = 'cd ' + config.opensmile_path + ' && ./SMILExtract -C ' + opensmile_config_path + ' -I ' + filepath + ' -O ' + single_feat_path + ' -appendarff 0'
     print("Opensmile cmd: ", cmd)
     os.system(cmd)
